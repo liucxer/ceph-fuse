@@ -19,6 +19,8 @@ func main() {
 	err = syscall.Stat(path, &stat)
 	logrus.Infof("syscall.Stat err:%v, stat:%+v", err, stat)
 
+	file, err := os.Open("")
+	file.Stat()
 	err = syscall.Close(fd)
 	logrus.Infof("syscall.Close err:%v", err)
 }

@@ -74,7 +74,7 @@ func (file File) Attr(ctx context.Context, a *fuse.Attr) error {
 	a.Atime = time.Unix(cephAttr.Atime.Sec, 0)
 	a.Mtime = time.Unix(cephAttr.Mtime.Sec, 0)
 	a.Ctime = time.Unix(cephAttr.Ctime.Sec, 0)
-	a.Mode = os.FileMode(cephAttr.Mode)
+	a.Mode = os.ModeDir | os.FileMode(uint32(cephAttr.Mode))
 	a.Nlink = cephAttr.Nlink
 	a.Uid = cephAttr.Uid
 	a.Gid = cephAttr.Gid
