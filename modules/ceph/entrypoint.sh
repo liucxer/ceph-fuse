@@ -12,7 +12,7 @@ BUILD_TAGS=${BUILD_TAGS:-}
 RESULTS_DIR=/results
 CEPH_CONF=/tmp/ceph/ceph.conf
 MIRROR_STATE=/dev/null
-PKG_PREFIX=github.com/ceph/go-ceph
+PKG_PREFIX=github.com/liucxer/ceph-fuse/modules/ceph
 ALT_FS="@/tmp/ceph/altfs.txt"
 GOFLAGS="-buildvcs=false ${GOFLAGS}"
 

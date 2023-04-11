@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"bazil.org/fuse/fs/fstestutil/spawntest"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil/spawntest"
 )
 
 var helpers spawntest.Registry

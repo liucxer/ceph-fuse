@@ -1,6 +1,6 @@
 # go-ceph - Go bindings for Ceph APIs
 
-[![Godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/ceph/go-ceph) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/ceph/go-ceph/master/LICENSE)
+[![Godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/liucxer/ceph-fuse/modules/ceph) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/ceph/go-ceph/master/LICENSE)
 
 ## Introduction
 
@@ -49,7 +49,7 @@ Example: `dnf -y install centos-release-ceph-pacific`.
 
 To quickly test if one can build with go-ceph on your system, run:
 ```sh
-go get github.com/ceph/go-ceph
+go get github.com/liucxer/ceph-fuse/modules/ceph
 ```
 
 Once compiled, code using go-ceph is expected to dynamically link to the Ceph
@@ -109,7 +109,7 @@ compile with a particular Ceph version before go-ceph v0.2.0 is not guaranteed.
 ## Documentation
 
 Detailed API documentation is available at
-<https://pkg.go.dev/github.com/ceph/go-ceph>.
+<https://pkg.go.dev/github.com/liucxer/ceph-fuse/modules/ceph>.
 
 Some [API Hints and How-Tos](./docs/hints.md) are also available to quickly
 introduce how some of API calls work together.
@@ -120,7 +120,7 @@ introduce how some of API calls work together.
 ```
 docker run --rm -it --net=host \
   --security-opt apparmor:unconfined \
-  -v ${PWD}:/go/src/github.com/ceph/go-ceph:z \
+  -v ${PWD}:/go/src/github.com/liucxer/ceph-fuse/modules/ceph:z \
   -v /home/nwatkins/src/ceph/build:/home/nwatkins/src/ceph/build:z \
   -e CEPH_CONF=/home/nwatkins/src/ceph/build/ceph.conf \
   ceph-golang
@@ -155,9 +155,9 @@ make test-docker
 Want to get in touch with the go-ceph team? We're available through a few
 different channels:
 * Have a question, comment, or feedback:
-  [Use the Discussions Board](https://github.com/ceph/go-ceph/discussions)
+  [Use the Discussions Board](https://github.com/liucxer/ceph-fuse/modules/ceph/discussions)
 * Report an issue or request a feature:
-  [Issues Tracker](https://github.com/ceph/go-ceph/issues)
+  [Issues Tracker](https://github.com/liucxer/ceph-fuse/modules/ceph/issues)
 * We participate in the Ceph
   [user's mailing list](https://lists.ceph.io/hyperkitty/list/ceph-users@ceph.io/)
   and [dev list](https://lists.ceph.io/hyperkitty/list/dev@ceph.io/)

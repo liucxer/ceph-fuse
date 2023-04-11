@@ -21,13 +21,13 @@ import (
 	"testing"
 	"time"
 
-	"bazil.org/fuse"
-	"bazil.org/fuse/fs"
-	"bazil.org/fuse/fs/fstestutil"
-	"bazil.org/fuse/fs/fstestutil/record"
-	"bazil.org/fuse/fs/fstestutil/spawntest"
-	"bazil.org/fuse/fs/fstestutil/spawntest/httpjson"
-	"bazil.org/fuse/fuseutil"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil/record"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil/spawntest"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil/spawntest/httpjson"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fuseutil"
 	"golang.org/x/sys/unix"
 )
 

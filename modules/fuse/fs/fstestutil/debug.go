@@ -5,7 +5,7 @@ import (
 	"log"
 	"strconv"
 
-	"bazil.org/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
 )
 
 type flagDebug bool

@@ -1,6 +1,6 @@
 github.com/Julusian/godocdown v0.0.0-20170816220326-6d19f8ff2df8/go.mod h1:INZr5t32rG59/5xeltqoCJoNY7e5x/3xoY9WSWVWg74=
-github.com/ceph/go-ceph v0.20.0 h1:weYE7zoVrIBk9bIVq8jS9z3RukGlnZwFGCth7Tu1ssU=
-github.com/ceph/go-ceph v0.20.0/go.mod h1:/4iZyaN5wTpIFMEKO6GU3xX3vHnyvd2Fcdf05n9VuD0=
+github.com/liucxer/ceph-fuse/modules/ceph v0.20.0 h1:weYE7zoVrIBk9bIVq8jS9z3RukGlnZwFGCth7Tu1ssU=
+github.com/liucxer/ceph-fuse/modules/ceph v0.20.0/go.mod h1:/4iZyaN5wTpIFMEKO6GU3xX3vHnyvd2Fcdf05n9VuD0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

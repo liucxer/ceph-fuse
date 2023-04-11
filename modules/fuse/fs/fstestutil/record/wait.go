@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"bazil.org/fuse"
-	"bazil.org/fuse/fs"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs"
 )
 
 // ReleaseWaiter notes whether a FUSE Release call has been seen.

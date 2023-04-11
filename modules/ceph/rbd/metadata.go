@@ -8,8 +8,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/ceph/go-ceph/internal/cutil"
-	"github.com/ceph/go-ceph/internal/retry"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/cutil"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/retry"
 )
 
 // GetMetadata returns the metadata string associated with the given key.

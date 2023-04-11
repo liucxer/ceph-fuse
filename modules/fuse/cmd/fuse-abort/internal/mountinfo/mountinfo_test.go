@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"bazil.org/fuse/cmd/fuse-abort/internal/mountinfo"
+	"github.com/liucxer/ceph-fuse/modules/fuse/cmd/fuse-abort/internal/mountinfo"
 )
 
 func TestOpenError(t *testing.T) {

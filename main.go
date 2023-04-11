@@ -1,60 +1,189 @@
-// Copyright 2016 the Go-FUSE Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-// This program is the analogon of libfuse's hello.c, a a program that
-// exposes a single file "file.txt" in the root directory.
+// Hellofs implements a simple "hello world" file system.
 package main
 
 import (
 	"context"
 	"flag"
-	"log"
-	"syscall"
-
-	"github.com/hanwen/go-fuse/v2/fs"
-	"github.com/hanwen/go-fuse/v2/fuse"
+	"fmt"
+	"github.com/liucxer/ceph-fuse/modules/ceph_mgr"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs"
+	"github.com/sirupsen/logrus"
+	"os"
+	"time"
 )
 
-type HelloRoot struct {
-	fs.Inode
+// Dir implements both Node and Handle for the root directory.
+type Dir struct {
+	Path string
 }
 
-func (r *HelloRoot) Open(ctx context.Context, flags uint32) (fh fs.FileHandle, fuseFlags uint32, errno syscall.Errno) {
-
-	return
+func (Dir) Attr(ctx context.Context, a *fuse.Attr) error {
+	a.Inode = 1
+	a.Mode = os.ModeDir | 0o555
+	return nil
 }
 
-func (r *HelloRoot) OnAdd(ctx context.Context) {
-	ch := r.NewPersistentInode(
-		ctx, &fs.MemRegularFile{
-			Data: []byte("file.txt"),
-			Attr: fuse.Attr{
-				Mode: 0644,
-			},
-		}, fs.StableAttr{Ino: 2})
-	r.AddChild("file.txt", ch, false)
+func (dir Dir) Lookup(ctx context.Context, name string) (fs.Node, error) {
+	return File{
+		Path: dir.Path,
+		Name: name,
+	}, nil
 }
 
-func (r *HelloRoot) Getattr(ctx context.Context, fh fs.FileHandle, out *fuse.AttrOut) syscall.Errno {
-	out.Mode = 0755
-	return 0
+var dirDirs = []fuse.Dirent{
+	{Inode: 2, Name: "hello", Type: fuse.DT_File},
+	{Inode: 3, Name: "hello_dir", Type: fuse.DT_Dir},
 }
 
-var _ = (fs.NodeGetattrer)((*HelloRoot)(nil))
-var _ = (fs.NodeOnAdder)((*HelloRoot)(nil))
+func (dir Dir) ReadDirAll(ctx context.Context) ([]fuse.Dirent, error) {
+	dirs, err := GlobalCephMgr.ListDir(dir.Path)
+	if err != nil {
+		return nil, err
+	}
+
+	var res []fuse.Dirent
+	for _, dir := range dirs {
+		res = append(res, fuse.Dirent{
+			Inode: uint64(dir.Inode()),
+			Type:  fuse.DirentType(dir.DType()),
+			Name:  dir.Name(),
+		})
+	}
+
+	return res, nil
+}
+
+// File implements both Node and Handle for the hello file.
+type File struct {
+	Path string
+	Name string
+}
+
+const greeting = "hello, world\n"
+
+func (file File) ReadDirAll(ctx context.Context) ([]fuse.Dirent, error) {
+	dirs, err := GlobalCephMgr.ListDir(file.Path + "/" + file.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	var res []fuse.Dirent
+	for _, dir := range dirs {
+		res = append(res, fuse.Dirent{
+			Inode: uint64(dir.Inode()),
+			Type:  fuse.DirentType(dir.DType()),
+			Name:  dir.Name(),
+		})
+	}
+
+	return res, nil
+}
+
+func (file File) Attr(ctx context.Context, a *fuse.Attr) error {
+	cephAttr, err := GlobalCephMgr.GetFileAttr(file.Path, file.Name)
+	if err != nil {
+		return err
+	}
+
+	a.Inode = uint64(cephAttr.Inode)
+	a.Size = cephAttr.Size
+	a.Blocks = cephAttr.Blocks
+	a.Atime = time.Unix(cephAttr.Atime.Sec, 0)
+	a.Mtime = time.Unix(cephAttr.Mtime.Sec, 0)
+	a.Ctime = time.Unix(cephAttr.Ctime.Sec, 0)
+
+	a.Mode = os.FileMode(uint32(cephAttr.Mode) & (1<<10 - 1))
+	logrus.Debugf("cephAttr.Mode: %b", cephAttr.Mode)
+	logrus.Debugf("a.Mode: %b", a.Mode)
+	logrus.Debugf("mode: %d", cephAttr.Mode>>14)
+	if cephAttr.Mode>>14 == 1 {
+		a.Mode = os.ModeDir | a.Mode
+	}
+
+	a.Nlink = cephAttr.Nlink
+	a.Uid = cephAttr.Uid
+	a.Gid = cephAttr.Gid
+	a.Rdev = uint32(cephAttr.Rdev)
+	a.BlockSize = cephAttr.Blksize
+	/*
+		none Valid time.Duration // how long Attr can be cached
+		none  Flags     AttrFlags
+	*/
+	return nil
+}
+
+func (file File) Lookup(ctx context.Context, name string) (fs.Node, error) {
+	return File{
+		Path: file.Path + file.Name + "/",
+		Name: name,
+	}, nil
+}
+
+func (file File) ReadAll(ctx context.Context) ([]byte, error) {
+	return GlobalCephMgr.ReadFile(file.Path + file.Name)
+}
+
+// FS implements the hello world file system.
+type FS struct{}
+
+func (FS) Root() (fs.Node, error) {
+	return Dir{
+		Path: "/",
+	}, nil
+}
+
+func usage() {
+	fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "  %s MOUNTPOINT\n", os.Args[0])
+	flag.PrintDefaults()
+}
+
+var (
+	GlobalCephMgr *ceph_mgr.CephMgr
+)
 
 func main() {
-	debug := flag.Bool("debug", false, "print debug data")
+	flag.Usage = usage
 	flag.Parse()
-	if len(flag.Args()) < 1 {
-		log.Fatal("Usage:\n  hello MOUNTPOINT")
+
+	if flag.NArg() != 1 {
+		usage()
+		os.Exit(2)
 	}
-	opts := &fs.Options{}
-	opts.Debug = *debug
-	server, err := fs.Mount(flag.Arg(0), &HelloRoot{}, opts)
+	mountpoint := flag.Arg(0)
+
+	err := fuse.Unmount(mountpoint)
 	if err != nil {
-		log.Fatalf("Mount fail: %v\n", err)
+		logrus.Errorf("fuse.Unmount err:%v", err)
+		return
 	}
-	server.Wait()
+
+	GlobalCephMgr, err = ceph_mgr.NewCephMgr()
+	if err != nil {
+		logrus.Errorf("ceph_mgr.NewCephMgr err:%v", err)
+		return
+	}
+
+	fuseConn, err := fuse.Mount(
+		mountpoint,
+		fuse.FSName("helloworld"),
+		fuse.Subtype("hellofs"),
+	)
+	if err != nil {
+		logrus.Errorf("fuse.Mount err:%v", err)
+		return
+	}
+	defer func() {
+		err = fuseConn.Close()
+		if err != nil {
+			logrus.Errorf("fuseConn.Close err:%v", err)
+		}
+	}()
+
+	err = fs.Serve(fuseConn, FS{})
+	if err != nil {
+		logrus.Errorf("fs.Serve err:%v", err)
+		return
+	}
 }

@@ -95,7 +95,7 @@
 //
 // Behavior and metadata of the mounted file system can be changed by
 // passing MountOption values to Mount.
-package fuse // import "bazil.org/fuse"
+package fuse // import "github.com/liucxer/ceph-fuse/modules/fuse"
 
 import (
 	"bytes"
@@ -2331,7 +2331,7 @@ func (r *FlushRequest) Respond() {
 type RemoveRequest struct {
 	Header `json:"-"`
 	Name   string // name of the entry to remove
-	Dir    bool   // is this rmdir?
+	Dir    bool // is this rmdir?
 }
 
 var _ Request = (*RemoveRequest)(nil)

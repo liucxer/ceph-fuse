@@ -9,7 +9,7 @@ import (
 	"strings"
 	"syscall"
 
-	"bazil.org/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
 )
 
 // A Tree implements a basic read-only directory tree for FUSE.

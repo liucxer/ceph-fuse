@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ceph/go-ceph/internal/admintest"
-	"github.com/ceph/go-ceph/internal/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/admintest"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/commands"
 )
 
 var radosConnector = admintest.NewConnector()

@@ -9,7 +9,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/ceph/go-ceph/internal/retry"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/retry"
 )
 
 // CreateSnap creates a pool-wide snapshot.

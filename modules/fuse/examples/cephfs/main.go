@@ -2,13 +2,13 @@
 package main
 
 import (
-	"bazil.org/fuse"
-	"bazil.org/fuse/examples/cephfs/pkg"
-	"bazil.org/fuse/fs"
-	_ "bazil.org/fuse/fs/fstestutil"
 	"context"
 	"flag"
 	"fmt"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse/examples/cephfs/pkg"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs"
+	_ "github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil"
 	"github.com/sirupsen/logrus"
 	"log"
 	"os"

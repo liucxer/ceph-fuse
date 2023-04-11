@@ -1,7 +1,7 @@
 package pkg_test
 
 import (
-	"bazil.org/fuse/examples/cephfs/pkg"
+	"github.com/liucxer/ceph-fuse/modules/fuse/examples/cephfs/pkg"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/require"
 	"testing"

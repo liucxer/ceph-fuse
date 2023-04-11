@@ -1,7 +1,7 @@
 package manager
 
 import (
-	ccom "github.com/ceph/go-ceph/common/commands"
+	ccom "github.com/liucxer/ceph-fuse/modules/ceph/common/commands"
 )
 
 // MgrAdmin is used to administrate ceph's manager (mgr).

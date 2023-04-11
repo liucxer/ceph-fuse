@@ -12,7 +12,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/ceph/go-ceph/rados"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 // MigrationImageState denotes the current migration status of a given image.

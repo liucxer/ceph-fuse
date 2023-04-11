@@ -3,9 +3,9 @@ package admin
 import (
 	"strconv"
 
-	ccom "github.com/ceph/go-ceph/common/commands"
-	"github.com/ceph/go-ceph/internal/commands"
-	"github.com/ceph/go-ceph/rados"
+	ccom "github.com/liucxer/ceph-fuse/modules/ceph/common/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 // RadosCommander provides an interface to execute JSON-formatted commands that

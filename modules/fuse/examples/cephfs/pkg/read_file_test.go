@@ -1,8 +1,8 @@
 package pkg_test
 
 import (
-	"bazil.org/fuse/examples/cephfs/pkg"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/liucxer/ceph-fuse/modules/fuse/examples/cephfs/pkg"
 	"github.com/stretchr/testify/require"
 	"testing"
 )

@@ -16,10 +16,10 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/ceph/go-ceph/internal/cutil"
-	"github.com/ceph/go-ceph/internal/retry"
-	ts "github.com/ceph/go-ceph/internal/timespec"
-	"github.com/ceph/go-ceph/rados"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/cutil"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/retry"
+	ts "github.com/liucxer/ceph-fuse/modules/ceph/internal/timespec"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 const (

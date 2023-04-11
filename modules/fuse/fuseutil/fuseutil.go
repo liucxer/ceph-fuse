@@ -1,7 +1,7 @@
-package fuseutil // import "bazil.org/fuse/fuseutil"
+package fuseutil // import "github.com/liucxer/ceph-fuse/modules/fuse/fuseutil"
 
 import (
-	"bazil.org/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
 )
 
 // HandleRead handles a read request assuming that data is the entire file content.

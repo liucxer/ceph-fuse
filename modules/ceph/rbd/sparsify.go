@@ -21,7 +21,7 @@ static inline int wrap_rbd_sparsify_with_progress(
 import "C"
 
 import (
-	"github.com/ceph/go-ceph/internal/callbacks"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/callbacks"
 )
 
 // SparsifyCallback defines the function signature needed for the

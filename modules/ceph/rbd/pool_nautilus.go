@@ -13,8 +13,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/ceph/go-ceph/internal/retry"
-	"github.com/ceph/go-ceph/rados"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/retry"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 // GetPoolMetadata returns pool metadata associated with the given key.

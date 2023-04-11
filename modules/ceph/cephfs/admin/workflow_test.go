@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ceph/go-ceph/cephfs"
+	"github.com/liucxer/ceph-fuse/modules/ceph/cephfs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

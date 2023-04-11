@@ -13,10 +13,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	tsuite "github.com/stretchr/testify/suite"
 
-	"github.com/ceph/go-ceph/cephfs"
-	"github.com/ceph/go-ceph/internal/admintest"
-	"github.com/ceph/go-ceph/internal/commands"
-	"github.com/ceph/go-ceph/rados"
+	"github.com/liucxer/ceph-fuse/modules/ceph/cephfs"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/admintest"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 var (

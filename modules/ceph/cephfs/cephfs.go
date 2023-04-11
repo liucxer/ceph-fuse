@@ -11,8 +11,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/ceph/go-ceph/internal/retry"
-	"github.com/ceph/go-ceph/rados"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/retry"
+	"github.com/liucxer/ceph-fuse/modules/ceph/rados"
 )
 
 // MountInfo exports ceph's ceph_mount_info from libcephfs.cc

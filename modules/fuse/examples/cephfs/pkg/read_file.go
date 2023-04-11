@@ -1,7 +1,7 @@
 package pkg
 
 import (
-	"github.com/ceph/go-ceph/cephfs"
+	"github.com/liucxer/ceph-fuse/modules/ceph/cephfs"
 	"github.com/sirupsen/logrus"
 	"os"
 )

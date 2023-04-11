@@ -9,9 +9,9 @@ import (
 	"os"
 	"syscall"
 
-	"bazil.org/fuse"
-	"bazil.org/fuse/fs"
-	_ "bazil.org/fuse/fs/fstestutil"
+	"github.com/liucxer/ceph-fuse/modules/fuse"
+	"github.com/liucxer/ceph-fuse/modules/fuse/fs"
+	_ "github.com/liucxer/ceph-fuse/modules/fuse/fs/fstestutil"
 )
 
 func usage() {

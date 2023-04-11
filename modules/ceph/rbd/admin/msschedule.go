@@ -4,8 +4,8 @@
 package admin
 
 import (
-	ccom "github.com/ceph/go-ceph/common/commands"
-	"github.com/ceph/go-ceph/internal/commands"
+	ccom "github.com/liucxer/ceph-fuse/modules/ceph/common/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/commands"
 )
 
 // Interval of time between scheduled snapshots. Typically in the form

@@ -6,7 +6,7 @@ package nfs
 import (
 	"errors"
 
-	"github.com/ceph/go-ceph/internal/commands"
+	"github.com/liucxer/ceph-fuse/modules/ceph/internal/commands"
 )
 
 // SquashMode indicates the kind of user-id squashing performed on an export.
