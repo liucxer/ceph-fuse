@@ -1,0 +1,62 @@
+
+ignoreGeneratedHeader = false
+severity = "error"
+confidence = 0.8
+errorCode = 1
+warningCode = 0
+
+[directive.specify-disable-reason]
+
+[rule.blank-imports]
+[rule.context-as-argument]
+[rule.context-keys-type]
+[rule.dot-imports]
+[rule.error-return]
+[rule.error-strings]
+[rule.error-naming]
+[rule.exported]
+[rule.if-return]
+[rule.increment-decrement]
+[rule.var-naming]
+  arguments = [["ID", "UID"]]
+[rule.var-declaration]
+# We need to disable the package-comments check because we check all the .go
+# files in the repo individually. This appears to confuse the new
+# pacakge-comments implementation as it works correctly with ./... or ./a/b/c
+# but not ./a/b/c/*.go. We need the latter input style as we have files with
+# build tags we want to check, as well as multiple modules, within the repo.
+[rule.package-comments]
+  disabled = true
+[rule.range]
+[rule.receiver-naming]
+[rule.time-naming]
+[rule.unexported-return]
+[rule.indent-error-flow]
+[rule.errorf]
+[rule.empty-block]
+[rule.superfluous-else]
+[rule.unused-parameter]
+[rule.unreachable-code]
+[rule.redefines-builtin-id]
+
+[rule.atomic]
+[rule.bool-literal-in-expr]
+[rule.constant-logical-expr]
+[rule.unnecessary-stmt]
+[rule.unused-receiver]
+[rule.modifies-parameter]
+[rule.modifies-value-receiver]
+[rule.range-val-in-closure]
+[rule.waitgroup-by-value]
+[rule.duplicated-imports]
+[rule.struct-tag]
+[rule.import-shadowing]
+
+[rule.argument-limit]
+  arguments = [7]
+[rule.function-result-limit]
+  arguments = [3]
+
+[rule.unhandled-error]
+  # functions to ignore unhandled errors on
+  arguments = ["fmt.Printf", "fmt.Println"]

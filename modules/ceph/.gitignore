@@ -1,0 +1,9 @@
+.build-docker
+.build.*
+.run.*
+*.swp
+*~
+*.out
+*.test
+/*.json
+/implements
